@@ -1,5 +1,5 @@
 /** Class that determines whether or not a year is a leap year.
- *  @author YOUR NAME HERE
+ *  @author Yunhao Ji
  */
 public class LeapYear {
 
@@ -13,7 +13,16 @@ public class LeapYear {
             System.out.printf("%d is not a leap year.\n", year);
         }
     }
-
+    /** Check if the year is a leap year.
+     * @param   year to be analyzed
+     */
+    public static boolean isLeapYear(int year) {
+        if (year % 400 == 0 || year % 4 == 0 && year % 100 != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /** Must be provided an integer as a command line argument ARGS. */
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -22,7 +31,7 @@ public class LeapYear {
         }
         for (int i = 0; i < args.length; i++) {
             try {
-                int year = Integer.parseInt(args[i]);
+                int year = Integer.parseInt(args[i]); // String[] 数组，数组的每一位是一个字符串
                 checkLeapYear(year);
             } catch (NumberFormatException e) {
                 System.out.printf("%s is not a valid number.\n", args[i]);
