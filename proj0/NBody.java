@@ -7,7 +7,7 @@ public class NBody {
         return radiusOfUniverse;
     
     }
-    public static Planet[] readPlanet(String fileName) {
+    public static Planet[] readPlanets(String fileName) {
         In in = new In(fileName);
         int numberOfPlanets = in.readInt(); //读入planets数量
         double radiusOfUniverse = in.readDouble(); // 读入universe半径
@@ -32,7 +32,7 @@ public class NBody {
         double dt = Double.parseDouble(arg[1]);
         String fileName = arg[2];
         double radius  = NBody.readRadius(fileName);
-        Planet[] bodies = NBody.readPlanet(fileName);
+        Planet[] bodies = NBody.readPlanets(fileName);
         /** Drawing the background */
         StdDraw.setXscale(0, radius);
         StdDraw.setYscale(0, radius);
