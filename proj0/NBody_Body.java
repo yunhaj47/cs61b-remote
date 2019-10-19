@@ -7,12 +7,12 @@ public class NBody {
         return radiusOfUniverse;
     
     }
-    public static Planet[] readBodies(String fileName) {
+    public static Body[] readBodies(String fileName) {
         In in = new In(fileName);
         int numberOfPlanets = in.readInt(); //读入planets数量
         double radiusOfUniverse = in.readDouble(); // 读入universe半径
         
-        Planet[] bodies = new Planet[numberOfPlanets];
+        Body[] bodies = new Body[numberOfPlanets];
         
         for (int i = 0; i < numberOfPlanets; i++) {
             double xP = in.readDouble();
@@ -21,7 +21,7 @@ public class NBody {
             double vY = in.readDouble();
             double m = in.readDouble();
             String img  = in.readString();
-            bodies[i] = new Planet(xP, yP, vX, vY, m, img);
+            bodies[i] = new Body(xP, yP, vX, vY, m, img);
         }
         return bodies;
     }
@@ -32,7 +32,7 @@ public class NBody {
         double dt = Double.parseDouble(arg[1]);
         String fileName = arg[2];
         double radius  = NBody.readRadius(fileName);
-        Planet[] bodies = NBody.readBodies(fileName);
+        Body[] bodies = NBody.readBodies(fileName);
         /** Drawing the background */
         StdDraw.setXscale(0, radius);
         StdDraw.setYscale(0, radius);
@@ -57,7 +57,7 @@ public class NBody {
                 yForce[i] = bodies[i].calcNetForceExertedByY(bodies);
                 bodies[i].update(dt, xForce[i], yForce[i]);
             }
-            for (Planet element : bodies) {
+            for (Body element : bodies) {
                 element.draw();
             }
             StdDraw.show();
