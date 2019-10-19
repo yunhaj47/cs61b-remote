@@ -97,5 +97,12 @@ public class Body {
         this.yyPos = this.yyPos + dt * this.yyVel;
         
     }
+    /** Draw one body */
+    public void draw() {
+        String filename = "images/" + this.imgFileName;
+        //StdDraw.picture(0.5 + this.xxPos/(2*2.5e+11),0.5 + this.yyPos/(2*2.5e+11),filename);
+        StdDraw.picture(this.xxPos,this.yyPos,filename);
+    }
+
 
 }
