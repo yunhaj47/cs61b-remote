@@ -1,4 +1,7 @@
-/** The class that will actually run the simulation. */
+/** The class that will actually run the simulation. 
+ *  This NBody class performs together with Body.java
+ *  rather than Planet.java
+ */
 public class NBody {
     public static double readRadius(String fileName) {
         In in = new In(fileName);
