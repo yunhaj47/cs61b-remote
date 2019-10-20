@@ -80,9 +80,11 @@ public class IntList {
      * *  elements of B.  May modify items of A. Don't use 'new'.
      */
 
-    public static IntList dcatenate(IntList A, IntList B) {
+    public static IntList dcatenate(IntList A, IntList B) { /** recursive version */
         //TODO:  fill in method
-        return null;
+        if (A == null) return B; /** base case */
+        A.rest = dcatenate(A.rest, B);
+        return A;
     }
 
     /**
@@ -91,7 +93,8 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        if (A == null) return B; /** base case */
+        return new IntList(A.first, catenate(A.rest, B));
     }
 
 
