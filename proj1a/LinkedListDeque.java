@@ -5,10 +5,10 @@ public class LinkedListDeque<T> {
     private TNode sentinel;
 
 
-    public class TNode {
-        public T item;
-        public TNode previous;
-        public TNode next;
+    private class TNode {
+        private T item;
+        private TNode previous;
+        private TNode next;
 
         public TNode(TNode p, T t, TNode n) {
             previous = p;
@@ -92,6 +92,9 @@ public class LinkedListDeque<T> {
     /** Removes and returns the item at the front of the deque.
      * If no such item exists, returns null. */
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         TNode p = sentinel.next;
         sentinel.next = sentinel.next.next;
         sentinel.next.previous = sentinel;
@@ -103,7 +106,10 @@ public class LinkedListDeque<T> {
     /** Removes and returns the item at the back of the deque.
      * If no such item exists, returns null. */
     public T removeLast() {
-        TNode p =sentinel.previous;
+        if (size == 0) {
+            return null;
+        }
+        TNode p = sentinel.previous;
         sentinel.previous = sentinel.previous.previous;
         sentinel.previous.next = sentinel;
         size -= 1;
@@ -128,38 +134,12 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(index, sentinel.next);
     }
 
-    private T getRecursiveHelper(int index, TNode p){
+    private T getRecursiveHelper(int index, TNode p) {
         if (index == 0) {
             return p.item;
         }
         p = p.next;
-        return getRecursiveHelper(index - 1, p) ;
+        return getRecursiveHelper(index - 1, p);
     }
-
-
-    public static void main(String[] arg) {
-        LinkedListDeque<Integer> test1 = new LinkedListDeque<>();
-        System.out.println(test1.isEmpty());
-//        LinkedListDeque<Double> test2 = new LinkedListDeque<>(1.414);
-//        test1.addFirst("0.6667");
-//        test1.addLast("3.1415926");
-//        test1.addLast("1.414");
-//        System.out.println(test1.isEmpty());
-//        System.out.println(test1.size());
-//        test1.printDeque();
-//        String removeItem = test1.removeFirst();
-//        System.out.println(removeItem);
-//        String removeItem2 = test1.removeLast();
-//        System.out.println(removeItem2);
-//        String y = test1.get(0);
-//        String z = test1.getRecursive(0);
-//        String k = test1.getRecursive(2);
-//        System.out.println(y);
-//        System.out.println(z);
-//        System.out.println(k);
-//        LinkedListDeque<String> test2 = new LinkedListDeque<>(test1);
-
-    }
-
     
 }

@@ -19,7 +19,7 @@ public class ArrayDeque<T> {
     }
 
 
-    public void resize(int capacity) {
+    private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
 
         int curr = plusOne(nextFirst);
@@ -79,8 +79,8 @@ public class ArrayDeque<T> {
      * print out a new line. */
     public void printDeque() {
         int curr = plusOne(nextFirst);
-        for(int i = 0 ; i < size; i++) {
-            System.out.print(items[curr]+ " ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(items[curr] + " ");
             curr = plusOne(curr);
         }
         System.out.println();
@@ -89,6 +89,9 @@ public class ArrayDeque<T> {
     /** Removes and returns the item at the front of the deque.
      * If no such item exists, returns null.*/
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         int first = plusOne(nextFirst);
         T firstItem = items[first];
         items[first] = null;
@@ -105,6 +108,9 @@ public class ArrayDeque<T> {
     /** Removes and returns the item at the back of the deque.
      * If no such item exists, returns null. */
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         int last = minusOne(nextLast);
         T lastItem = items[last];
         items[last] = null;
@@ -141,16 +147,4 @@ public class ArrayDeque<T> {
         }
     }
 
-    public static void main(String[] arg) {
-        ArrayDeque<String> a2 = new ArrayDeque<>();
-        a2.addLast("2");
-        a2.addFirst("3");
-        a2.addFirst("9");
-        a2.addFirst("1");
-        a2.addFirst("4");
-        System.out.println(a2.size());
-        System.out.println(a2.isEmpty());
-        ArrayDeque<String> a3 = new ArrayDeque<>(a2);
-
-    }
 }
