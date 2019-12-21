@@ -137,14 +137,14 @@ public class ArrayDeque<T> {
     /** Creating a deep copy means that
      * you create an entirely new ArrayDeque,
      * with the exact same items as other.*/
-//    public ArrayDeque(ArrayDeque other) {
-//        items = (T[]) new Object[INIT_CAPACITY];
-//        size = 0;
-//        nextFirst = 0;
-//        nextLast = 1;
-//        for (int i = 0; i < other.size(); i++) {
-//            addLast((T) other.get(i));
-//        }
-//    }
+    public ArrayDeque(ArrayDeque other) {
+        items = (T[]) new Object[INIT_CAPACITY];
+        size = 0;
+        nextFirst = 0;
+        nextLast = 1;
+        for (int i = 0; i < other.size(); i++) {
+            addLast((T) other.get(i));
+        }
+    }
 
 }

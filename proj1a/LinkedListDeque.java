@@ -18,12 +18,12 @@ public class LinkedListDeque<T> {
     }
 
     /** Creates an empty linked list deque */
-//    public LinkedListDeque() {
-//        size = 0;
-//        sentinel  = new TNode(null, null, null);
-//        sentinel.previous = sentinel;
-//        sentinel.next = sentinel;
-//    }
+    public LinkedListDeque() {
+        size = 0;
+        sentinel  = new TNode(null, null, null);
+        sentinel.previous = sentinel;
+        sentinel.next = sentinel;
+    }
 
     /** Constructor */
     public LinkedListDeque(T t) {
@@ -34,21 +34,21 @@ public class LinkedListDeque<T> {
     }
 
     /** Create a deep copy of others */
-//    public LinkedListDeque(LinkedListDeque other) {
-//        size = other.size();
-//        sentinel  = new TNode(null, null, null);
-//        sentinel.previous = sentinel;
-//        sentinel.next = sentinel;
-//        TNode p = other.sentinel.next;
-//        TNode q = sentinel;
-//        for (int i = 0; i <= size - 1; i++) {
-//            q.next = new TNode(q, p.item, sentinel);
-//            sentinel.previous  = q.next;
-//            p = p.next;
-//            q = q.next;
-//        }
-//
-//    }
+    public LinkedListDeque(LinkedListDeque other) {
+        size = other.size();
+        sentinel  = new TNode(null, null, null);
+        sentinel.previous = sentinel;
+        sentinel.next = sentinel;
+        TNode p = other.sentinel.next;
+        TNode q = sentinel;
+        for (int i = 0; i <= size - 1; i++) {
+            q.next = new TNode(q, p.item, sentinel);
+            sentinel.previous  = q.next;
+            p = p.next;
+            q = q.next;
+        }
+
+    }
 
     /** Adds an item of type T to the front of the deque. */
     public void addFirst(T t) {
