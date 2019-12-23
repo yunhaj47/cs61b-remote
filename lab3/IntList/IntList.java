@@ -81,7 +81,7 @@ public class IntList {
         IntList formerNode = null;
         IntList currNode = A;
         IntList nextNode = A;
-        if (currNode.rest == null) {
+        if (currNode == null || currNode.rest == null) {
             return null;
         }
         while (currNode != null) {
