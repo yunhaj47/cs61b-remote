@@ -28,7 +28,10 @@ public class ArithmeticTest {
         assertEquals(0, Arithmetic.sum(6, -6));
     }
 
-    /* Run the unit tests in this file. */
+    /* Run the unit tests in this file.
+    * Change the mode argument from "all" to "failed"
+    * to only show the results of failed tests
+    * instead of all tests */
     public static void main(String... args) {        
         jh61b.junit.TestRunner.runTests("all", ArithmeticTest.class);
     }
