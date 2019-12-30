@@ -15,21 +15,17 @@ public class TestArrayDequeGold {
 
             if (flag == 0) {
                 msg += "addFirst(" + i + ")\n";
-//               System.out.println("addFirst(" + toAdd + ")");
                 stud.addFirst(toAdd);
                 std.addFirst(toAdd);
             } else if (flag == 1) {
                 msg += "addLast(" + i + ")\n";
-//               System.out.println("addLast(" + toAdd + ")");
                 stud.addLast(toAdd);
                 std.addLast(toAdd);
             } else if (flag == 2 && !stud.isEmpty()) {
-//               System.out.println("removeFirst()");
                 assertEquals(msg + "removeFirst()", stud.isEmpty(), std.isEmpty());
                 Integer expected = std.removeFirst();
                 Integer actual = stud.removeFirst();
                 assertEquals(msg + "removeFirst()", expected, actual);
-//               System.out.println("removeFirst()");
                 msg += "removeFirst()\n";
             } else {
                 if (!stud.isEmpty()) {
@@ -37,7 +33,6 @@ public class TestArrayDequeGold {
                     Integer expected = std.removeLast();
                     Integer actual = stud.removeLast();
                     assertEquals(msg + "removeLast()", expected, actual);
-//                   System.out.println("removeLast()");
                     msg += "removeLast()\n";
                 }
             }
