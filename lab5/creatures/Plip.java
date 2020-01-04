@@ -1,5 +1,6 @@
 package creatures;
 
+import edu.princeton.cs.algs4.StdRandom;
 import huglife.Creature;
 import huglife.Direction;
 import huglife.Action;
@@ -35,10 +36,11 @@ public class Plip extends Creature {
      */
     public Plip(double e) {
         super("plip");
-        r = 0;
-        g = 0;
-        b = 0;
-        energy = e;
+        energy = Math.min(e, 2);
+        energy = Math.max(e, 0);
+        r = 99;
+        g = 63 + (int)(96 * e);
+        b = 76;
     }
 
     /**
@@ -57,7 +59,7 @@ public class Plip extends Creature {
      * that you get this exactly correct.
      */
     public Color color() {
-        g = 63;
+        g = 63 + (int)(96 * energy);;
         return color(r, g, b);
     }
 
@@ -74,7 +76,10 @@ public class Plip extends Creature {
      * private static final variable. This is not required for this lab.
      */
     public void move() {
-        // TODO
+        energy -= 0.15;
+        if (energy <= 0) {
+            energy = 0;
+        }
     }
 
 
@@ -82,7 +87,10 @@ public class Plip extends Creature {
      * Plips gain 0.2 energy when staying due to photosynthesis.
      */
     public void stay() {
-        // TODO
+        energy += 0.2;
+        if (energy >= 2) {
+            energy = 2;
+        }
     }
 
     /**
@@ -91,7 +99,17 @@ public class Plip extends Creature {
      * Plip.
      */
     public Plip replicate() {
-        return this;
+        energy = energy * 0.5;
+        double babyEnergy = energy;
+        return new Plip(babyEnergy);
+    }
+
+    private static Direction randomEntry(Deque<Direction> creatureDir) {
+        int index = StdRandom.uniform(creatureDir.size());
+        Direction[] arrForm = new Direction[creatureDir.size()];
+        arrForm = creatureDir.toArray(arrForm);
+        Direction rdmElement = arrForm[index];
+        return rdmElement;
     }
 
     /**
@@ -111,19 +129,30 @@ public class Plip extends Creature {
         // Rule 1
         Deque<Direction> emptyNeighbors = new ArrayDeque<>();
         boolean anyClorus = false;
-        // TODO
         // (Google: Enhanced for-loop over keys of NEIGHBORS?)
         // for () {...}
-
-        if (false) { // FIXME
-            // TODO
+        for (Direction key : neighbors.keySet()) {
+            Occupant value = neighbors.get(key);
+            if (value.name().equals("empty")) {
+                emptyNeighbors.add(key);
+            } else if (value.name().equals("clorus")){
+                anyClorus = true;
+            }
         }
-
+        if (emptyNeighbors.size() == 0) {
+            return new Action(Action.ActionType.STAY);
+        }
         // Rule 2
         // HINT: randomEntry(emptyNeighbors)
-
+        if (energy >= 1) {
+            Direction targetPos = randomEntry(emptyNeighbors);
+            return new Action(Action.ActionType.REPLICATE, targetPos);
+        }
         // Rule 3
-
+        if (anyClorus) {
+            Direction targetPos = randomEntry(emptyNeighbors);
+            return new Action(Action.ActionType.MOVE, targetPos);
+        }
         // Rule 4
         return new Action(Action.ActionType.STAY);
     }
